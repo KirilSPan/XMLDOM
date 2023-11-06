@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -59,53 +58,48 @@ public class AccesoDOM {
     }
 
     public void recorrerDOM() {
+    try {
+        Node nodo = null;
+        Node root = doc.getFirstChild();
+        NodeList nodelist = root.getChildNodes();
+        System.out.println(doc.getFirstChild().getNodeName());
 
-        try {
-            //codigo escrito en Practica1
-            //añade el nuevo método
+        
+        for (int i = 0; i < nodelist.getLength(); i++) {
+            nodo = nodelist.item(i);
+            if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                String[] datos = new String[7]; // Actualizamos el tamaño del array
 
-            String[] datos = new String[6];//lo usamos para la información de cada libro
-            @SuppressWarnings("UnusedAssignment")
-            Node nodo = null;
-            Node root = doc.getFirstChild();
-            NodeList nodelist = root.getChildNodes(); //(1)Ver dibujo del árbol
-            System.out.println(doc.getFirstChild().getNodeName());
+                
+                datos[0] = nodo.getAttributes().getNamedItem("id").getNodeValue();
+                datos[1] = nodo.getAttributes().getNamedItem("autor").getNodeValue();
+                datos[2] = nodo.getAttributes().getNamedItem("Titulo").getNodeValue();
+                datos[3] = nodo.getAttributes().getNamedItem("genero").getNodeValue();
+                datos[4] = nodo.getAttributes().getNamedItem("precio").getNodeValue();
+                datos[5] = nodo.getAttributes().getNamedItem("Año publicacion").getNodeValue();
+                datos[6] = nodo.getAttributes().getNamedItem("descripcion").getNodeValue();
 
-            //recorrer el árbol DOM. El 1er nivel de nodos hijos del raíz
-            for (int i = 0; i < nodelist.getLength(); i++) {
-                nodo = nodelist.item(i);//node toma el valor de los hijos de raíz
-                if (nodo.getNodeType() == Node.ELEMENT_NODE) {//miramos nodos de tipo Element
+                NodeList nl2 = nodo.getChildNodes();
 
-                    @SuppressWarnings("UnusedAssignment")
-                    Node ntemp = null;
-                    int contador = 1;
-                    //sacamos el valor del atributo publicado
-                    datos[0] = nodo.getAttributes().item(0).getNodeValue();
-                    //sacamos los valores de los hijos de nodo, Titulo y Autor
-                    NodeList nl2 = nodo.getChildNodes();//obtenemos lista de hijos (2)
-
-                    for (int j = 0; j < nl2.getLength(); j++) {//iteramos en esa lista 
-                        ntemp = nl2.item(j);
-                        if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-                            if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-//para conseguir el texto de titulo y autor, se //puedo hacer con getNodeValue(), también con  //getTextContent() si es ELEMENT
-                                datos[contador] = ntemp.getTextContent(); // también datos[contador]=ntemp.getChildNodes().item(0).getNodeValue();
-
-                                contador++;
-                            }
+                for (int j = 0; j < nl2.getLength(); j++) {
+                    Node ntemp = nl2.item(j);
+                    if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+                        if (ntemp.getNodeName().equals("autor")) {
+                            datos[5] = ntemp.getTextContent();
+                        } else if (ntemp.getNodeName().equals("titulo")) {
+                            datos[6] = ntemp.getTextContent();
                         }
-                        //el array de String datos[] tiene los valores que necesitamos
-
                     }
-                    System.out.println("Año publicación: " + datos[0] + " -- Autor: " + datos[2] + " -- Libro: " + datos[1]);
-
                 }
-            }
-        } catch (DOMException e) {
-            System.out.println(e.toString());
-        }
 
+                System.out.println("id: " + datos[0] + " -- Autor: " + datos[5] + " -- Título: " + datos[6] + " -- Género: " + datos[1] + " -- Precio: " + datos[2] + " -- Año publicación: " + datos[3] + " -- Descripción: " + datos[4]);
+            }
+        }
+    } catch (DOMException e) {
+        System.out.println(e.toString());
     }
+}
+
 
     public int insertarLibroEnDOM(String titulo, String autor, String fecha) {
         try {
