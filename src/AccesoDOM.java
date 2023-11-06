@@ -64,7 +64,7 @@ public class AccesoDOM {
             //codigo escrito en Practica1
             //añade el nuevo método
 
-            String[] datos = new String[3];//lo usamos para la información de cada libro
+            String[] datos = new String[6];//lo usamos para la información de cada libro
             @SuppressWarnings("UnusedAssignment")
             Node nodo = null;
             Node root = doc.getFirstChild();
