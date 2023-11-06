@@ -97,7 +97,7 @@ public class AccesoDOM {
                         //el array de String datos[] tiene los valores que necesitamos
 
                     }
-                    System.out.println("Año publicación: " + datos[0] + " -- Autor: " + datos[2] + " -- Libro: " + datos[1]);
+                    System.out.println("ID Book: " + datos[0] + " -- Author: " + datos[1] + " -- Title: " + datos[1]);
 
                 }
             }
