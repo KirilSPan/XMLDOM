@@ -22,6 +22,7 @@ public class Proyecto1 {
         File fichero = new File("./src/books.xml");
         
         accesoLibro.abrirXMLaDOM(fichero);
+        accesoLibro.recorrerDOM();
         
         
     }
