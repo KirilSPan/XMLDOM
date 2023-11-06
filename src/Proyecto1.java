@@ -1,3 +1,6 @@
+
+import java.io.File;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
@@ -15,7 +18,12 @@ public class Proyecto1 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        System.out.println("Hola Mundo");
+        AccesoDOM accesoLibro = new AccesoDOM();
+        File fichero = new File("./src/books.xml");
+        
+        accesoLibro.abrirXMLaDOM(fichero);
+        
+        
     }
     
 }
