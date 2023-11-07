@@ -24,6 +24,8 @@ public class Proyecto1 {
         accesoLibro.abrirXMLaDOM(fichero);
         accesoLibro.recorrerDOM();
         
+        System.out.println("hola");
+        
         
     }
     
