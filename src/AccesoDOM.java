@@ -130,7 +130,7 @@ public class AccesoDOM {
         try {
             //Node root=doc.getFirstChild();
             //Node raiz = doc.getDocumentElement();
-            NodeList nl1 = doc.getElementsByTagName("Titulo");
+            NodeList nl1 = doc.getElementsByTagName("title");
             Node n1;
             for (int i = 0; i < nl1.getLength(); i++) {
                 n1 = nl1.item(i);
