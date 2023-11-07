@@ -24,6 +24,9 @@ public class Proyecto1 {
         accesoLibro.abrirXMLaDOM(fichero);
         accesoLibro.recorrerDOM();
         
+        accesoLibro.deleteNode("Midnight Rain");
+        accesoLibro.recorrerDOM();
+        
         
         
         
