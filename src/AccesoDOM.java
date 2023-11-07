@@ -80,11 +80,9 @@ public class AccesoDOM {
                             datos[6] = ntemp.getTextContent();
                         }
                     }
-                    System.out.println("ID Book: " + datos[0] + " -- Author: " + datos[1] + " -- Title: " + datos[1]);
+                    }
 
-                }
-
-                System.out.println("id: " + datos[0] + " -- Autor: " + datos[5] + " -- Título: " + datos[6] + " -- Género: " + datos[1] + " -- Precio: " + datos[2] + " -- Año publicación: " + datos[3] + " -- Descripción: " + datos[4]);
+                System.out.println("id: " + datos[0] + " -- Autor: " + datos[1] + " -- Título: " + datos[2] + " -- Género: " + datos[3] + " -- Precio: " + datos[4] + " -- Año publicación: " + datos[5] + " -- Descripción: " + datos[6]);
             }
         }
     } catch (DOMException e) {
