@@ -26,6 +26,7 @@ public class Proyecto1 {
         
         accesoLibro.deleteNode("Midnight Rain");
         accesoLibro.recorrerDOM();
+        accesoLibro.guardarDOMcomoArchivo("./src/newBooks.xml");
         
         
         

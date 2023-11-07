@@ -170,10 +170,10 @@ public class AccesoDOM {
 
     // Crea un nuevo archivo xml del DOM en memoria
     @SuppressWarnings("CallToPrintStackTrace")
-    void guardarDOMcomoArchivo(String nuevoArchivo) {
+    void guardarDOMcomoArchivo(String newFileXML) {
         try {
             Source src = new DOMSource(doc); // Definimos el origen
-            StreamResult rst = new StreamResult(new File(nuevoArchivo)); // Definimos el resultado
+            StreamResult rst = new StreamResult(new File(newFileXML)); // Definimos el resultado
             // Declaramos el Transformer que tiene el método .transform() que necesitamos.
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
 
@@ -181,7 +181,7 @@ public class AccesoDOM {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
             transformer.transform(src, (javax.xml.transform.Result) rst);
-            System.out.println("Archivo creado del DOM con éxito\n");
+            System.out.println("File from the DOM succefully created\n");
         } catch (IllegalArgumentException | TransformerException e) {
             e.printStackTrace();
         }
