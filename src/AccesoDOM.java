@@ -105,7 +105,7 @@ public class AccesoDOM {
 
                     }
 
-                    System.out.println("id: " + datos[0] + " -- Autor: " + datos[1] + " -- Título: " + datos[2] + " -- Género: " + datos[3] + " -- Precio: " + datos[4] + " -- Año publicación: " + datos[5] + " -- Descripción: " + datos[6]);
+                    System.out.println("id: " + datos[0] + " -- Autor: " + datos[1] + " -- Titulo: " + datos[2] + " -- Genero: " + datos[3] + " -- Precio: " + datos[4] + " -- Ano publicacion: " + datos[5] + " -- Descripcion: " + datos[6]);
                     iDs.add(datos[0]);
 
                 }
@@ -193,61 +193,7 @@ public class AccesoDOM {
         }
     }
 
-    public int insertarLibroEnDOMv(String author, String title, String genre, double price, String publish_date, String description) {
-        try {
-            System.out.println("Add book to main DOM:" + author + ";" + title + ";" + genre);
-            //crea los nodos=>los añade al padre desde las hojas a la raíz
-            //CREATE TITULO con el texto en medio 
-
-            ArrayList<String> retrievedData = recorrerDOM(); // Assuming the method is called within the same class or accessible
-
-            // Get the last ID from the retrieved ArrayList
-            if (!retrievedData.isEmpty()) {
-                String lastIDString = retrievedData.get(retrievedData.size() - 1);
-
-                // Increment the last ID
-                int lastID;
-                try {
-                    lastID = Integer.parseInt(lastIDString);
-                    lastID++; // Increment the ID by 1
-                    String incrementedID = String.valueOf(lastID);
-                    System.out.println("Incremented ID: " + incrementedID);
-                } catch (NumberFormatException e) {
-                    System.out.println("Last ID is not a valid integer.");
-                }
-            } else {
-                System.out.println("No IDs found in the ArrayList.");
-            }
-
-            Node ntitulo = doc.createElement("Title");//crea etiquetas <Titulo>...</Titulo>
-            Node ntitulo_text = doc.createTextNode(title);//crea el nodo texto para el Titulo
-            ntitulo.appendChild(ntitulo_text);//añade el titulo a las etiquetas=><Titulo>titulo</Titulo>
-            //Node nautor=doc.createElement("Autor").appendChild(doc.createTextNode(autor));//one line doesn't work
-            //CREA AUTOR
-            Node nautor = doc.createElement("Author");
-            Node nautor_text = doc.createTextNode(title);
-            nautor.appendChild(nautor_text);
-            //CREA LIBRO, con atributo y nodos Título y Autor 
-            Node nLibro = doc.createElement("Libro");
-            ((Element) nLibro).setAttribute("publicado", genre);
-            nLibro.appendChild(ntitulo);
-            nLibro.appendChild(nautor);
-            //APPEND LIBRO TO THE ROOT
-
-            nLibro.appendChild(doc.createTextNode("\n"));//para insertar saltos de línea
-
-            Node raiz = doc.getFirstChild();//tb. doc.getChildNodes().item(0)
-            raiz.appendChild(nLibro);
-            System.out.println("Libro insertado en DOM.");
-            return 0;
-        } catch (DOMException e) {
-            System.out.println(e);
-            return -1;
-        }
-
-    }
-
-    @SuppressWarnings("CallToPrintStackTrace")
+   
     public int deleteNode(String tit) {
         System.out.println("Buscando el Libro " + tit + " para borrarlo");
         try {
