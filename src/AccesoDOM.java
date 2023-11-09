@@ -122,7 +122,7 @@ public class AccesoDOM {
         try {
             System.out.println("Add book to main DOM:" + author + ";" + title + ";" + genre);
 
-            ArrayList<String> retrievedData = recorrerDOM(); // Assuming the method is called within the same class or accessible
+            ArrayList<String> retrievedData = recorrerDOM();
 
             String datePattern = "yyyy-MM-dd"; // Date pattern to parse the publish_date
             SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
