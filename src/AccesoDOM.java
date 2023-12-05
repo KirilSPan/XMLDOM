@@ -1,13 +1,10 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.invoke.MethodType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -64,6 +61,7 @@ public class AccesoDOM {
 
     public ArrayList recorrerDOM() {
 
+        @SuppressWarnings("UnusedAssignment")
         String[] datos = null;
         ArrayList iDs = new ArrayList();
 
@@ -93,13 +91,13 @@ public class AccesoDOM {
 
                     for (int j = 0; j < nl2.getLength(); j++) {//iteramos en esa lista 
                         ntemp = nl2.item(j);
-                        if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-                            if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-//para conseguir el texto de titulo y autor, se //puedo hacer con getNodeValue(), también con  //getTextContent() si es ELEMENT
-                                datos[contador] = ntemp.getTextContent(); // también datos[contador]=ntemp.getChildNodes().item(0).getNodeValue();
 
-                                contador++;
-                            }
+                        if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+//para conseguir el texto de titulo y autor, se //puedo hacer con getNodeValue(), también con  //getTextContent() si es ELEMENT
+                            datos[contador] = ntemp.getTextContent(); // también datos[contador]=ntemp.getChildNodes().item(0).getNodeValue();
+
+                            contador++;
+
                         }
                         //el array de String datos[] tiene los valores que necesitamos
 
@@ -148,6 +146,7 @@ public class AccesoDOM {
                 System.out.println("No IDs found in the ArrayList.");
             }
 
+            // Create all the nodes
             Node nauthor = doc.createElement("author");
             Node nauthor_text = doc.createTextNode(author);
             nauthor.appendChild(nauthor_text);
@@ -172,6 +171,7 @@ public class AccesoDOM {
             Node ndescription_text = doc.createTextNode(description);
             ndescription.appendChild(ndescription_text);
 
+            // Add the previous created nodes to a new Book
             Node newBook = doc.createElement("book");
             ((Element) newBook).setAttribute("id", "bk" + incrementedID);
             newBook.appendChild(nauthor);
@@ -193,7 +193,7 @@ public class AccesoDOM {
         }
     }
 
-   
+    @SuppressWarnings("CallToPrintStackTrace")
     public int deleteNode(String tit) {
         System.out.println("Buscando el Libro " + tit + " para borrarlo");
         try {
